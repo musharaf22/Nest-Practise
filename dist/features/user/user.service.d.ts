@@ -5,7 +5,11 @@ export declare class UserService {
     private jwtService;
     constructor(logger: GlobalService, jwtService: JwtService);
     loginUser(): Promise<{
-        token: string;
+        message: string;
+        data: {
+            token: string;
+        };
+        success: boolean;
     }>;
     getAllUser: () => {
         success: boolean;

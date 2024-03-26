@@ -14,9 +14,9 @@ let ResponseInterceptor = class ResponseInterceptor {
         try {
             return next.handle().pipe((0, rxjs_1.map)((data) => {
                 return {
-                    message: data.message ?? 'Response generated for intereptor',
-                    data: data.data ?? [],
-                    success: data.sucess ?? false,
+                    message: data.message ?? "Response generated for intereptor",
+                    data: data.data ?? data ?? [],
+                    success: data.sucess ?? true,
                 };
             }));
         }

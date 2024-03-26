@@ -7,4 +7,11 @@ export declare class UserController {
         message: string;
         data: any[];
     }>;
+    login(): Promise<{
+        message: string;
+        data: {
+            token: string;
+        };
+        success: boolean;
+    }>;
 }

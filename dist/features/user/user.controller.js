@@ -23,18 +23,29 @@ let UserController = class UserController {
     async get() {
         return this.userService.getAllUser();
     }
+    async login() {
+        console.log("Rendering - - - -");
+        return await this.userService.loginUser();
+    }
 };
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)("/"),
     (0, Roleguard_1.Roles)(["admin"]),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "get", null);
+__decorate([
+    (0, common_1.Get)("/login"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "login", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.UseInterceptors)(response_interceptor_1.ResponseInterceptor, error_interceptor_1.ErrorsInterceptor),
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, Roleguard_1.RolesGuard),
+    (0, common_1.UseGuards)(Roleguard_1.RolesGuard),
     (0, common_1.Controller)("user"),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

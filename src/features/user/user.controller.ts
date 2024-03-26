@@ -6,14 +6,20 @@ import { Roles, RolesGuard } from "src/common/guards/Roleguard";
 import { JwtAuthGuard } from "src/common/guards/jwtAuthGuard";
 
 @UseInterceptors(ResponseInterceptor, ErrorsInterceptor)
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(RolesGuard)
 @Controller("user")
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get("/")
   @Roles(["admin"])
+  @UseGuards(JwtAuthGuard)
   async get() {
     return this.userService.getAllUser();
+  }
+  @Get("/login")
+  async login() {
+    console.log("Rendering - - - -");
+    return await this.userService.loginUser();
   }
 }

@@ -27,13 +27,24 @@ let UserService = class UserService {
         };
     }
     async loginUser() {
-        const payload = {
-            id: 1,
-            name: "Musharaf Haque",
-            email: "musharaf@test.com",
-        };
-        const token = await this.jwtService.signAsync(payload);
-        return { token };
+        try {
+            const payload = {
+                id: 1,
+                name: "Musharaf Haque",
+                email: "musharaf@test.com",
+            };
+            console.log({ first: payload });
+            const token = await this.jwtService.signAsync(payload, {
+                secret: "secretkey",
+                expiresIn: "365d",
+            });
+            console.log({ token });
+            return { message: "Logged In", data: { token }, success: true };
+        }
+        catch (error) {
+            console.log(error);
+            throw new common_1.HttpException(error.message, 500);
+        }
     }
 };
 exports.UserService = UserService;
