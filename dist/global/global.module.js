@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GlobalModule = void 0;
 const common_1 = require("@nestjs/common");
 const global_service_1 = require("./global service");
+const jwt_1 = require("@nestjs/jwt");
 let GlobalModule = class GlobalModule {
 };
 exports.GlobalModule = GlobalModule;
@@ -16,9 +17,9 @@ exports.GlobalModule = GlobalModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
         imports: [],
-        providers: [global_service_1.GlobalService],
+        providers: [global_service_1.GlobalService, jwt_1.JwtService],
         controllers: [],
-        exports: [global_service_1.GlobalService],
+        exports: [global_service_1.GlobalService, jwt_1.JwtService],
     })
 ], GlobalModule);
 //# sourceMappingURL=global.module.js.map
