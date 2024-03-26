@@ -4,6 +4,7 @@ import { UserModule } from "src/features/user/user.module";
 import { GlobalModule } from "src/global/global.module";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { JwtStrategy } from "src/common/strategies/jwtStrategy";
 @Module({
   imports: [
     GlobalModule,
@@ -14,6 +15,6 @@ import { AppService } from "./app.service";
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule {}

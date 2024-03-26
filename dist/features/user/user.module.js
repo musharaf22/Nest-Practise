@@ -17,8 +17,8 @@ exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [],
-        providers: [user_service_1.UserService],
-        controllers: [user_controller_1.UserController, jwt_1.JwtService],
+        providers: [user_service_1.UserService, jwt_1.JwtService],
+        controllers: [user_controller_1.UserController],
     })
 ], UserModule);
 //# sourceMappingURL=user.module.js.map

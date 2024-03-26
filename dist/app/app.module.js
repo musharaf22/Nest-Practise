@@ -13,6 +13,7 @@ const user_module_1 = require("../features/user/user.module");
 const global_module_1 = require("../global/global.module");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const jwtStrategy_1 = require("../common/strategies/jwtStrategy");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -27,7 +28,7 @@ exports.AppModule = AppModule = __decorate([
             }),
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, jwtStrategy_1.JwtStrategy],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

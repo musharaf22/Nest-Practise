@@ -15,6 +15,7 @@ const user_service_1 = require("./user.service");
 const response_interceptor_1 = require("../../utils/interceptors/response.interceptor");
 const error_interceptor_1 = require("../../utils/interceptors/error.interceptor");
 const Roleguard_1 = require("../../common/guards/Roleguard");
+const jwtAuthGuard_1 = require("../../common/guards/jwtAuthGuard");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -27,13 +28,13 @@ exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)("/"),
     (0, Roleguard_1.Roles)(["admin"]),
-    (0, common_1.UseGuards)(Roleguard_1.RolesGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "get", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.UseInterceptors)(response_interceptor_1.ResponseInterceptor, error_interceptor_1.ErrorsInterceptor),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, Roleguard_1.RolesGuard),
     (0, common_1.Controller)("user"),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
