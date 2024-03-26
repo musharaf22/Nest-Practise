@@ -38,7 +38,6 @@ let UserService = class UserService {
                 secret: "secretkey",
                 expiresIn: "365d",
             });
-            console.log({ token });
             return { message: "Logged In", data: { token }, success: true };
         }
         catch (error) {
