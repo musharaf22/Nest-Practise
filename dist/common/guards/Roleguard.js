@@ -9,25 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.RolesGuard = exports.Roles = void 0;
 const common_1 = require("@nestjs/common");
-const global_service_1 = require("../../global/global service");
-let UserService = class UserService {
-    constructor(logger) {
-        this.logger = logger;
-        this.getAllUser = () => {
-            this.logger.logs("User Service has been called");
-            return {
-                success: true,
-                message: "user found",
-                data: [],
-            };
-        };
+const core_1 = require("@nestjs/core");
+exports.Roles = core_1.Reflector.createDecorator();
+let RolesGuard = class RolesGuard {
+    constructor(reflector) {
+        this.reflector = reflector;
+    }
+    canActivate(context) {
+        const roles = this.reflector.get(exports.Roles, context.getHandler());
+        console.log({ roles });
+        if (!roles) {
+            return true;
+        }
+        return true;
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
+exports.RolesGuard = RolesGuard;
+exports.RolesGuard = RolesGuard = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [global_service_1.GlobalService])
-], UserService);
-//# sourceMappingURL=user.service.js.map
+    __metadata("design:paramtypes", [core_1.Reflector])
+], RolesGuard);
+//# sourceMappingURL=Roleguard.js.map
